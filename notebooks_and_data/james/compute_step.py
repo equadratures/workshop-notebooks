@@ -8,8 +8,17 @@ def compute_step(s_old,my_poly,del_k):
     # Add objectives and constraints to the optimisation problem
     # Approximately 3 lines
     Opt.add_objective(poly=my_poly)
-    Opt.add_bounds(-np.ones(s_old.size),np.ones(s_old.size))
     Opt.add_linear_ineq_con(np.eye(s_old.size), s_old-del_k*np.ones(s_old.size), s_old+del_k*np.ones(s_old.size))
+    Opt.add_bounds(-np.ones(s_old.size),np.ones(s_old.size))
+    
+    
+    
+    
+    
+    
+#     Opt.add_objective(poly=my_poly)
+#     Opt.add_bounds(-np.ones(s_old.size),np.ones(s_old.size))
+#     Opt.add_linear_ineq_con(np.eye(s_old.size), s_old-del_k*np.ones(s_old.size), s_old+del_k*np.ones(s_old.size))
 ####################################################################################
     sol = Opt.optimise(s_old)
     s_new = sol['x']
